@@ -18,16 +18,24 @@ public class ContainerFridge : Container
 
     private string? _productType;
     private double? _temperature;
-    public ContainerFridge(double payloadWeight, double maxLoadWeight, double height, double selfWeight, double depth, ContainerType type) 
-        : base(payloadWeight, maxLoadWeight, height, selfWeight, depth, ContainerType.C)
+    public ContainerFridge(double maxLoadWeight, double height, double selfWeight, double depth) 
+        : base(maxLoadWeight, height, selfWeight, depth, ContainerType.C)
     {}
 
     public void LoadContainer(int id, string product, double weight)
     {
-        if(_productType != null && _productType != product)
-            throw new InvalidOperationException("Cannot load different product types into the same container.");
+        if (_productType != null && _productType != product)
+        {
+            Console.WriteLine("Cannot load different product types into the same container.");
+            return;
+        }
+
         if (!products2temperature.ContainsKey(product))
-            throw new ArgumentException("Invalid product type.");
+        {
+            Console.WriteLine("Invalid product type.");
+            return;
+        }
+        
         if (weight + PayloadWeight > MaxLoadWeight)
             throw OverfillException();
 

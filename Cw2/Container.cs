@@ -11,16 +11,15 @@ public class Container
 
     private static int _counter;
     private static readonly Dictionary<int, Container> Containers = new();
-    private double _payloadWeight = 0;
+    private double _payloadWeight;
     private readonly double _maxLoadWeight;
     private double _height, _selfWeight, _depth;
     private string _serialNumber;
     private ContainerType _type;
 
-    protected Container(double payloadWeight, double maxLoadWeight,
+    protected Container(double maxLoadWeight,
         double height, double selfWeight, double depth, ContainerType type)
     {
-        this._payloadWeight = payloadWeight;
         this._maxLoadWeight = maxLoadWeight;
         this._height = height;
         this._selfWeight = selfWeight;
@@ -29,6 +28,7 @@ public class Container
         var id = ++_counter;
         _serialNumber = GenerateSerialNumber(type, id);
         Containers.Add(id, this);
+        _payloadWeight = 0;
     }
 
     public static Container getContainer(int id)
@@ -61,6 +61,18 @@ public class Container
         var container = getContainer(id);
         container._payloadWeight = container._type == ContainerType.G ? container._payloadWeight * 0.05 : 0;
         Console.WriteLine($"Container {container._serialNumber} unloaded.");
+    }
+
+    public void PrintInformation()
+    {
+        Console.WriteLine($"Serial number: {SerialNumber}");
+        Console.WriteLine($"Payload weight: {PayloadWeight} kg");
+        Console.WriteLine($"Max load weight: {MaxLoadWeight} kg");
+        Console.WriteLine($"Height: {Height} cm");
+        Console.WriteLine($"Self weight: {SelfWeight} kg");
+        Console.WriteLine($"Depth: {Depth} cm");
+        Console.WriteLine($"Type: {Type}");
+        Console.WriteLine();
     }
 
     protected Exception OverfillException()

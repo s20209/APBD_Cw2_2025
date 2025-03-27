@@ -2,8 +2,8 @@ namespace Cw2;
 
 public class ContainerGas : Container, IHazardNotifier
 {
-    public ContainerGas(double payloadWeight, double maxLoadWeight, double height, double selfWeight, double depth, ContainerType type) 
-        : base(payloadWeight, maxLoadWeight, height, selfWeight, depth, ContainerType.G)
+    public ContainerGas(double maxLoadWeight, double height, double selfWeight, double depth) 
+        : base(maxLoadWeight, height, selfWeight, depth, ContainerType.G)
     {
     }
 

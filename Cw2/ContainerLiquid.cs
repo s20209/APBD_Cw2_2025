@@ -3,8 +3,8 @@ namespace Cw2;
 public class ContainerLiquid : Container, IHazardNotifier
 {
     
-    public ContainerLiquid(double payloadWeight, double maxLoadWeight, double height, double selfWeight, double depth, ContainerType type, bool isHazard) 
-        : base(payloadWeight, maxLoadWeight, height, selfWeight, depth, ContainerType.L)
+    public ContainerLiquid(double maxLoadWeight, double height, double selfWeight, double depth, bool isHazard) 
+        : base(maxLoadWeight, height, selfWeight, depth, ContainerType.L)
     {}
 
     public void Notify()
